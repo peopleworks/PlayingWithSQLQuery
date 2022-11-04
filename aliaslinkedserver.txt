@@ -1,0 +1,16 @@
+Alias a linked Server in MS SQL server management studio
+
+There are no problems to add SQL linked server to the specific host running it. But what if you need to give it an alias, rather than use hostname as linked server name? Here is how to do it: 
+Step 1: 
+	○ In SQL Server Management Studio open Linked Servers and then 'New Linked Server'.
+	○ Inside of appeared wizard – Select the General tab.
+	○ Specify alias name in "Linked server" field.
+	○ Select SQL Native Client as provider.
+	○ Add sql_server in "Product Name" field (that's the magic).
+	○ In "Data Source" – specify name of the host to be used as linked server.
+Step 2: 
+	○ In Security tab – specify proper security options (e.g. security context)
+Step 3: 
+	○ In Server Options tab – set "Data Access", RPC, "Rpc Out" and "Use Remote Collation" to true.
+
+From <https://serverfault.com/questions/435440/alias-a-linked-server-in-sql-server-management-studio> 
