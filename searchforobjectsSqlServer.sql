@@ -1,3 +1,4 @@
+-- MS SQL Server
 -- Find a table in all objects
 
 SELECT SCHEMA_NAME(o.schema_id) + '.' + o.name AS [table], 
