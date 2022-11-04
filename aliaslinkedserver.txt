@@ -14,3 +14,5 @@ Step 3:
 	○ In Server Options tab – set "Data Access", RPC, "Rpc Out" and "Use Remote Collation" to true.
 
 From <https://serverfault.com/questions/435440/alias-a-linked-server-in-sql-server-management-studio> 
+
+
