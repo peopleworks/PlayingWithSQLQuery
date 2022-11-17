@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  StoredProcedure [dbo].[CommandCleanMemory]   ***\ 
+/****** Object:  StoredProcedure [dbo].[CommandCleanMemory]   ***/ 
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
