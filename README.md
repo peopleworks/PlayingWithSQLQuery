@@ -7,3 +7,7 @@ Share ideas from findings and doings
 
 # PostGresql
 
+# Oracle
+
+# DB2
+
