@@ -1,0 +1,32 @@
+-- Attach user information to session 
+ATTACH TO DB2 USER db2admin USING 123
+
+-- Connect to database
+Connect to <database> user db2Admin using 123
+
+-- List All Databases
+list database directory
+
+-- List all tables in database schema
+list tables for schema DB2ADMIN
+
+-- Backup Database
+backup database books to /temp/db2/
+
+-- Restore Database
+restore database books from /temp/db2/ taken at 20210402094602
+
+-- List of all connected applications
+list applications 
+
+-- Close all connected application
+force applications all
+
+-- List Active databases
+list active databases 
+
+-- List all application connected to database
+list applications for database <database> show detail
+
+-- Get the current working instance
+get instance 
