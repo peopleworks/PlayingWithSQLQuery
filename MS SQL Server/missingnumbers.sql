@@ -1,0 +1,10 @@
+WITH numbers AS (
+  SELECT (SELECT MIN(OID) FROM contact) AS n
+  UNION ALL
+  SELECT oid + 1 FROM contact WHERE oid < (SELECT MAX(OID) FROM contact)
+)
+SELECT n
+FROM numbers
+WHERE NOT EXISTS (
+  SELECT 1 FROM contact WHERE OID = n
+) OPTION (MAXRECURSION 0);
