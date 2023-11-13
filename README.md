@@ -13,4 +13,5 @@ Share ideas from findings and doings
 
 # MySQL
 -- Find Missing Indexes for All Tables in a Database
+
 -- Reorganize and Rebuild Indexes for All Tables in a Database
