@@ -1,0 +1,1 @@
+select sys_context('USERENV','SERVER_HOST') from dual
