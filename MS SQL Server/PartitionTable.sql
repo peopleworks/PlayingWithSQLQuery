@@ -1,3 +1,11 @@
+/*
+Purpose:
+- End-to-end example for creating and maintaining a partitioned SQL Server table.
+
+Customization:
+- Replace database names, table names, and partition boundaries before execution.
+*/
+
 
 -- Create a Partition Function
 CREATE PARTITION FUNCTION ZipIntegerPartitionFunction (INT)
@@ -44,7 +52,7 @@ Select * from uszips where zip = '00624'
 
 ---- Staging Table
 BEGIN TRANSACTION
-USE [ZipCodes]
+USE [YourDatabaseName]
 SET ANSI_NULLS ON
 SET QUOTED_IDENTIFIER ON
 CREATE TABLE [dbo].[Staging_uszips](
@@ -142,17 +150,17 @@ CREATE TABLE [dbo].[Staging_uszips](
 	[metdiv_name] [varchar](45) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
 ) ON [PRIMARY]
 
-USE [ZipCodes]
+USE [YourDatabaseName]
 CREATE CLUSTERED INDEX [Staging_uszips_IX_uszips_oid] ON [dbo].[Staging_uszips]
 (
 	[oid] ASC
 )WITH (PAD_INDEX = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-USE [ZipCodes]
+USE [YourDatabaseName]
 ALTER TABLE [dbo].[Staging_uszips] ADD  CONSTRAINT [Staging_uszips_PK_uszips] PRIMARY KEY NONCLUSTERED 
 (
 	[oid] ASC
 )WITH (PAD_INDEX = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-USE [ZipCodes]
+USE [YourDatabaseName]
 ALTER TABLE [dbo].[Staging_uszips]  WITH CHECK ADD  CONSTRAINT [chk_Staging_uszips_partition_5] CHECK  ([oid]>=N'40000' AND [oid]<N'10000')
 ALTER TABLE [dbo].[Staging_uszips] CHECK CONSTRAINT [chk_Staging_uszips_partition_5]
 COMMIT TRANSACTION

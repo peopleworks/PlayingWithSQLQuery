@@ -1,4 +1,11 @@
--- Find Missing Indexes for All Tables in a Database
+/*
+Purpose:
+- Generate CREATE INDEX statements for tables that are missing the expected index name.
+
+Customization:
+- Replace the definer/database placeholder before creating the procedure.
+- Review each generated statement before execution.
+*/
 
 CREATE DEFINER=`yourdatabase`@`%` PROCEDURE `yourdatabase`.`FindMissingIndexes`()
 begin

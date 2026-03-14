@@ -1,3 +1,11 @@
+/*
+Purpose:
+- Compare existing partition values with metadata and update the partition function when new values appear.
+
+Customization:
+- Replace placeholder partition function names before execution.
+*/
+
 BEGIN TRY 
     DECLARE @PartitionManagementID INT,
             @TableName NVARCHAR(50),
@@ -96,3 +104,4 @@ BEGIN CATCH
     -- Drop temporary table if an error occurs
     IF OBJECT_ID('tempdb..#TempPartitionValues') IS NOT NULL DROP TABLE #TempPartitionValues;
 END CATCH
+

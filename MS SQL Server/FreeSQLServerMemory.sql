@@ -1,6 +1,14 @@
+/*
+Purpose:
+- Temporarily lower and then restore SQL Server max memory to encourage memory release.
+
+Customization:
+- Adjust the memory values to match your environment before execution.
+*/
+
 USE [master]
 GO
-/****** Object:  StoredProcedure [dbo].[CommandCleanMemory]   ***/ 
+/****** Object:  StoredProcedure [dbo].[CommandCleanMemory] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -8,22 +16,18 @@ GO
 
 ALTER PROCEDURE [dbo].[CommandCleanMemory]
 AS
-
 BEGIN
-   
-   
-  
-	Exec sp_configure 'show advanced options', 1 
-	RECONFIGURE 
-	 
-	/*** Drop the max down to 64GB temporarily ***/
-	Exec sp_configure 'max server memory', 10240 -- 10 GB
-	RECONFIGURE 
-	/**** Wait a couple minutes to let SQLServer to naturally release the RAM..... ****/
-	WAITFOR DELAY '00:02:00' 
+    DECLARE @ReducedMemoryMB INT = 10240;
+    DECLARE @RestoredMemoryMB INT = 32768;
 
-	/** now bump it back up to "lots of RAM"! ****/
-	Exec sp_configure 'max server memory', 32768 -- 32 GB
-	RECONFIGURE
+    EXEC sp_configure 'show advanced options', 1;
+    RECONFIGURE;
 
+    EXEC sp_configure 'max server memory', @ReducedMemoryMB;
+    RECONFIGURE;
+
+    WAITFOR DELAY '00:02:00';
+
+    EXEC sp_configure 'max server memory', @RestoredMemoryMB;
+    RECONFIGURE;
 END

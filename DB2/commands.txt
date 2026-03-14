@@ -1,32 +1,35 @@
--- Attach user information to session 
-ATTACH TO DB2 USER db2admin USING 123
+-- DB2 administration cheatsheet.
+-- Replace placeholder values before execution and keep credentials outside source control.
 
--- Connect to database
-Connect to <database> user db2Admin using 123
+-- Attach user information to the current session.
+ATTACH TO DB2 USER <DB2_USER> USING <DB2_PASSWORD>
 
--- List All Databases
-list database directory
+-- Connect to a database.
+CONNECT TO <DATABASE_NAME> USER <DB2_USER> USING <DB2_PASSWORD>
 
--- List all tables in database schema
-list tables for schema DB2ADMIN
+-- List all databases registered on the server.
+LIST DATABASE DIRECTORY
 
--- Backup Database
-backup database books to /temp/db2/
+-- List all tables inside a schema.
+LIST TABLES FOR SCHEMA <SCHEMA_NAME>
 
--- Restore Database
-restore database books from /temp/db2/ taken at 20210402094602
+-- Backup a database.
+BACKUP DATABASE <DATABASE_NAME> TO <BACKUP_PATH>
 
--- List of all connected applications
-list applications 
+-- Restore a database from a specific backup image.
+RESTORE DATABASE <DATABASE_NAME> FROM <BACKUP_PATH> TAKEN AT <BACKUP_TIMESTAMP>
 
--- Close all connected application
-force applications all
+-- List all connected applications.
+LIST APPLICATIONS
 
--- List Active databases
-list active databases 
+-- Close all connected applications.
+FORCE APPLICATIONS ALL
 
--- List all application connected to database
-list applications for database <database> show detail
+-- List active databases.
+LIST ACTIVE DATABASES
 
--- Get the current working instance
-get instance 
+-- List all applications connected to a database with details.
+LIST APPLICATIONS FOR DATABASE <DATABASE_NAME> SHOW DETAIL
+
+-- Get the current working instance.
+GET INSTANCE

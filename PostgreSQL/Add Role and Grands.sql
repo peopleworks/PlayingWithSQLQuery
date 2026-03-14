@@ -1,16 +1,21 @@
-﻿GRANT ALL PRIVILEGES ON DATABASE pwerp TO consultabluestdo;
-GRANT USAGE ON SCHEMA public TO consultabluestdo;
-GRANT USAGE ON SCHEMA consultabluestdo TO consultabluestdo;
-ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO consultabluestdo;
-ALTER DEFAULT PRIVILEGES IN SCHEMA consultabluestdo GRANT SELECT ON TABLES TO consultabluestdo;
-ALTER DEFAULT PRIVILEGES IN SCHEMA consulta GRANT SELECT ON TABLES TO consultas;
+/*
+Purpose:
+- Grant reporting access and set default SELECT privileges for shared read-only roles.
 
+Customization:
+- Replace placeholder database, schema, role, and table names before execution.
+*/
 
+GRANT ALL PRIVILEGES ON DATABASE your_database TO reporting_role;
+GRANT USAGE ON SCHEMA public TO reporting_role;
+GRANT USAGE ON SCHEMA reporting_schema TO reporting_role;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO reporting_role;
+ALTER DEFAULT PRIVILEGES IN SCHEMA reporting_schema GRANT SELECT ON TABLES TO reporting_role;
+ALTER DEFAULT PRIVILEGES IN SCHEMA reporting_schema GRANT SELECT ON TABLES TO reporting_group;
 
-
-create group consultas;
-GRANT SELECT ON ventasloccitanepuntacanadias TO GROUP consultas;
-GRANT SELECT ON ventasloccitanepuntacanahoras TO GROUP consultas;
-GRANT SELECT ON ventasloccitanesantodomingodias TO GROUP consultas;
-GRANT SELECT ON ventasloccitanesantodomingohoras TO GROUP consultas;
-GRANT SELECT ON ventastrellishomedecorpuntacanahoras TO GROUP consultas;
+CREATE ROLE reporting_group;
+GRANT SELECT ON your_sales_table_daily TO reporting_group;
+GRANT SELECT ON your_sales_table_hourly TO reporting_group;
+GRANT SELECT ON your_branch_sales_table_daily TO reporting_group;
+GRANT SELECT ON your_branch_sales_table_hourly TO reporting_group;
+GRANT SELECT ON your_partner_sales_table_hourly TO reporting_group;

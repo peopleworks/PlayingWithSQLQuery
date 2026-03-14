@@ -1,3 +1,11 @@
+/*
+Purpose:
+- Build a partition function dynamically from metadata stored in helper tables.
+
+Customization:
+- Review PartitionManagement and placeholder names before execution.
+*/
+
 BEGIN TRY 
 
 DECLARE 

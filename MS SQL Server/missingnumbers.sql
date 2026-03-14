@@ -1,10 +1,23 @@
+/*
+Purpose:
+- Find missing integer values inside an identity-like column in SQL Server.
+
+Customization:
+- Replace contact and OID with your table and key column.
+*/
+
 WITH numbers AS (
-  SELECT (SELECT MIN(OID) FROM contact) AS n
-  UNION ALL
-  SELECT oid + 1 FROM contact WHERE oid < (SELECT MAX(OID) FROM contact)
+    SELECT (SELECT MIN(OID) FROM contact) AS n
+    UNION ALL
+    SELECT oid + 1
+    FROM contact
+    WHERE oid < (SELECT MAX(OID) FROM contact)
 )
 SELECT n
 FROM numbers
 WHERE NOT EXISTS (
-  SELECT 1 FROM contact WHERE OID = n
-) OPTION (MAXRECURSION 0);
+    SELECT 1
+    FROM contact
+    WHERE OID = n
+)
+OPTION (MAXRECURSION 0);

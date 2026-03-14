@@ -1,3 +1,11 @@
+/*
+Purpose:
+- Switch rows from a staging table into a partitioned table and expand the boundary range when needed.
+
+Safety:
+- Review table names, partition function names, and boundaries before running in production.
+*/
+
 
 DECLARE @rowCount BIGINT
 DECLARE @currentIdentity BIGINT
@@ -89,3 +97,4 @@ BEGIN CATCH
         ,ERROR_MESSAGE() AS ErrorMessage;
        ROLLBACK TRANSACTION
 END CATCH
+

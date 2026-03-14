@@ -1,4 +1,11 @@
--- Reorganize and Rebuild Indexes for All Tables in a Database
+/*
+Purpose:
+- Rebuild table storage and indexes for every base table in the current MySQL database.
+
+Customization:
+- Replace the definer/database placeholder before creating the procedure.
+- Execute first in a non-production environment because ALTER TABLE ... FORCE can be expensive.
+*/
 
 CREATE DEFINER=`yourdatabase`@`%` PROCEDURE `yourdatabase`.`ReorganizeRebuildIndexes`()
 begin
